@@ -104,6 +104,14 @@ app.delete('/api/promos', async (req, res) => {
 });
 
 async function runScrapers() {
+    console.log('🧹 Cleaning up old deals (3 days retention)...');
+    try {
+        // Delete items older than 3 days to keep the feed fresh
+        await db.execute("DELETE FROM promos WHERE created_at < datetime('now', '-3 days')");
+    } catch (e) {
+        console.error('Cleanup failed:', e);
+    }
+
     console.log('🚀 Starting scrapers...');
 
     const results = await Promise.allSettled([
