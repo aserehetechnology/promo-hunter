@@ -9,7 +9,11 @@ export async function redditScraper(db) {
     for (const sub of subreddits) {
         try {
             const response = await axios.get(`https://www.reddit.com/r/${sub}/new.json?limit=10`, {
-                headers: { 'User-Agent': 'PromoHunter/1.0' }
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+                    'Accept-Language': 'en-US,en;q=0.5'
+                }
             });
 
             const posts = response.data.data.children;
