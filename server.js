@@ -82,15 +82,8 @@ app.get('/api/stats', async (req, res) => {
     }
 });
 
-// Trigger scraping
-app.post('/api/scrape', async (req, res) => {
+const handleScrape = async (req, res) => {
     console.log('⚡ Scraping triggered!');
-
-    // In Vercel serverless, we must await the scrapers or the lambda might die
-    // But for fast response we might want to return early.
-    // However, on Turso mode, we want to ensure data commits.
-    // Let's await them.
-
     try {
         const results = await runScrapers();
         res.json({ message: 'Scraping completed', stats: results });
@@ -98,7 +91,11 @@ app.post('/api/scrape', async (req, res) => {
         console.error('Scraping failed:', error);
         res.status(500).json({ error: 'Scraping failed' });
     }
-});
+};
+
+// Trigger scraping (Support GET for Cron, POST for Button)
+app.get('/api/scrape', handleScrape);
+app.post('/api/scrape', handleScrape);
 
 // Clear all promos (Dev only usually)
 app.delete('/api/promos', async (req, res) => {
@@ -140,7 +137,6 @@ async function runScrapers() {
 // Initial scrape on startup (Only locally)
 if (process.env.NODE_ENV !== 'production') {
     // runScrapers(); 
-    // Commented out to avoid auto-scraping on every nodemon restart during dev
 }
 
 export default app;
