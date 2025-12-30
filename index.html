@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Meta Tags -->
+  <title>Promo Hunter - Discover Free Software & AI Tools Worldwide</title>
+  <meta name="description"
+    content="Real-time aggregator of free software, AI tools, games, and educational resources from around the world. Find the best deals and freebies daily.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <span class="logo-icon">🎯</span>
+          <span>Promo Hunter</span>
+        </div>
+
+        <div class="stats" id="stats">
+          <div class="stat-item">
+            <div class="stat-value" id="total-promos">0</div>
+            <div class="stat-label">Total Promos</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="new-today">0</div>
+            <div class="stat-label">New Today</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Controls -->
+    <div class="controls">
+      <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" placeholder="Search for AI tools, software, games..." autocomplete="off">
+      </div>
+
+      <div class="filters">
+        <div class="filter-group">
+          <label for="category-filter">Category:</label>
+          <select id="category-filter">
+            <option value="all">All Categories</option>
+            <option value="AI Tools">AI Tools</option>
+            <option value="Software">Software</option>
+            <option value="Games">Games</option>
+            <option value="Education">Education</option>
+            <option value="Developer Tools">Developer Tools</option>
+            <option value="Design Tools">Design Tools</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="country-filter">Country:</label>
+          <select id="country-filter">
+            <option value="all">All Countries</option>
+            <option value="Global">🌍 Global</option>
+            <option value="US">🇺🇸 United States</option>
+            <option value="UK">🇬🇧 United Kingdom</option>
+            <option value="CA">🇨🇦 Canada</option>
+            <option value="AU">🇦🇺 Australia</option>
+            <option value="IN">🇮🇳 India</option>
+            <option value="ID">🇮🇩 Indonesia</option>
+            <option value="SG">🇸🇬 Singapore</option>
+            <option value="MY">🇲🇾 Malaysia</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="source-filter">Source:</label>
+          <select id="source-filter">
+            <option value="all">All Sources</option>
+            <option value="Directory">Directory (NEW 20+)</option>
+            <option value="Cheat Sheet">Cheat Sheet</option>
+            <option value="AppSumo">AppSumo</option>
+            <option value="SharewareOnSale">SharewareOnSale (RSS)</option>
+            <option value="Giveaway of the Day">Giveaway of the Day (RSS)</option>
+            <option value="Indie Game Bundles">Indie Game Bundles (RSS)</option>
+            <option value="Reddit">Reddit</option>
+            <option value="Product Hunt">Product Hunt</option>
+            <option value="GitHub">GitHub</option>
+          </select>
+        </div>
+
+        <button id="refresh-btn">
+          <span>🔄</span>
+          <span>Refresh</span>
+        </button>
+
+        <button id="scrape-btn" class="secondary">
+          <span>⚡</span>
+          <span>Scrape Now</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loading" class="loading" style="display: none;">
+      <div class="spinner"></div>
+      <p style="margin-top: 1rem; color: var(--text-secondary);">Loading promos...</p>
+    </div>
+
+    <!-- Promo Grid -->
+    <div id="promo-grid" class="promo-grid"></div>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="empty-state" style="display: none;">
+      <div class="empty-state-icon">📭</div>
+      <h2>No promos found</h2>
+      <p>Try adjusting your filters or click "Scrape Now" to fetch new deals!</p>
+    </div>
+  </main>
+
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>
