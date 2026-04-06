@@ -11,7 +11,7 @@
     "start": "npm run server"
   },
   "devDependencies": {
-    "vite": "^7.2.4"
+    "vite": "^7.3.2"
   },
   "dependencies": {
     "@libsql/client": "^0.15.15",
